@@ -19,7 +19,7 @@ jobs:
           node-version: '20.11.1'
 
       - name: Install dependencies
-        run: npm ci
+        run: npm i
 
       - name: Build Storybook
         run: npm run build
