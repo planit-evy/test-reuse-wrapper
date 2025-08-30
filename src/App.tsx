@@ -2,6 +2,7 @@ import { useCallback, useState } from "react";
 import {
   AutodeskViewer,
   getAggregateSelection,
+  getObjectPropsByGuid,
   loadModelByUrn,
   unloadModelByUrn,
 } from "viewer-npm-test";
@@ -53,9 +54,6 @@ export function App() {
         onClick={() =>
           getAggregateSelection({
             guids: guids,
-            guidsAndModels: mappingData,
-            // @ts-ignore
-            viewer: window?.NOP_VIEWER,
             isolate: true,
             zoom: true,
           })
@@ -92,6 +90,15 @@ export function App() {
         }}
       >
         unload
+      </button>
+
+      <button
+        onClick={async () => {
+          const props = await getObjectPropsByGuid({ guids: guids });
+          console.log(props);
+        }}
+      >
+        get props
       </button>
 
       <div style={{ width: "600px", height: "400px", position: "relative" }}>
